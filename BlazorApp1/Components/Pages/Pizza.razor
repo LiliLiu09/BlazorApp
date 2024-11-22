@@ -2,7 +2,30 @@
 @rendermode InteractiveServer
 @using BlazorApp1.Model
 
-<h1>Blazing Pizzas</h1>
+<div class="container mt-5">
+    <h1 class="text-center">Blazing Pizzas</h1>
+    <div class="row">
+        @if (specials != null)
+        {
+            @foreach (var special in specials)
+            {
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-img-top"
+                             style="background-image: url('@special.ImageUrl'); height: 200px; background-size: cover; background-position: center;">
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@special.Name</h5>
+                            <p class="card-text">@special.Description</p>
+                            <span class="mt-auto text-primary font-weight-bold">@special.GetFormattedBasePrice()</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
 @code {
     List<PizzaSpecial> specials = new();
 
